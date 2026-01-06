@@ -7,7 +7,7 @@ export const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
   const currency = "$";
 
-  const backendURL = "http://localhost:3500";
+  const backendURL = "https://doctor-appointment-booking-system-cfnn.onrender.com/";
 
   const [doctors, setDoctors] = useState([]);
   const [token, setToken] = useState(
