@@ -12,12 +12,12 @@ const AdminContextProvider = (props) => {
   const [appointment, setAppointment] = useState([]);
   const [dashData, setDashData] = useState(false);
 
-  const backendUrl = "https://doctor-appointment-booking-system-cfnn.onrender.com/";
+  const backendUrl = "https://doctor-appointment-booking-system-cfnn.onrender.com";
   const getAllDoctors = async () => {
     try {
       const { data } = await axios.post(
         backendUrl + "/api/v1/admin/all-doctors",
-        {}, // request body (empty here)
+        {},
         {
           headers: {
             atoken: aToken,
