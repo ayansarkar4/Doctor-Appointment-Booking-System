@@ -41,7 +41,7 @@ const Navbar = () => {
         {/* Admin Panel Button */}
         <li>
           <a
-            href="https://doctor-appointment-admin3.onrender.com/"
+            href="https://doctor-appointment-booking-system-admin-tt0h.onrender.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs border border-gray-300 py-2 px-4 rounded-full hover:bg-primary hover:text-white transition"
