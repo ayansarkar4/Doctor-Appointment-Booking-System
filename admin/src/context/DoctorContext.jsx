@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 export const DoctorContext = createContext();
 
 const DoctorContextProvider = (props) => {
-  const backendUrl = "https://doctor-appointment-booking-system-cfnn.onrender.com/";
+  const backendUrl = "https://doctor-appointment-booking-system-cfnn.onrender.com";
   const [dToken, setDToken] = useState(
     localStorage.getItem("dToken") ? localStorage.getItem("dToken") : null
   );
