@@ -7,11 +7,12 @@ export const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
   const currency = "$";
 
-  const backendURL = "https://doctor-appointment-booking-system-cfnn.onrender.com";
+  const backendURL =
+    "https://doctor-appointment-booking-system-cfnn.onrender.com";
 
   const [doctors, setDoctors] = useState([]);
   const [token, setToken] = useState(
-    localStorage.getItem("token") ? localStorage.getItem("token") : null
+    localStorage.getItem("token") || null
   );
   const [userData, setUserData] = useState(false);
 
@@ -25,31 +26,36 @@ const AppContextProvider = ({ children }) => {
       }
     } catch (error) {
       console.log(error);
-      toast.error(data.message);
+      toast.error(
+        error?.response?.data?.message || "Failed to fetch doctors"
+      );
     }
   };
 
   const loadUserData = async () => {
     try {
-      const { data } = await axios.get(backendURL + "/api/v1/user/profile", {
-        headers: {
-          token: token,
-        },
-      });
+      const { data } = await axios.get(
+        backendURL + "/api/v1/user/profile",
+        {
+          headers: { token },
+        }
+      );
       if (data?.success) {
         setUserData(data?.userData);
       } else {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
       console.log(error);
+      toast.error(
+        error?.response?.data?.message || "Failed to load user data"
+      );
     }
   };
 
   useEffect(() => {
     getDoctorData();
-  });
+  }, []);
 
   useEffect(() => {
     if (token) {
@@ -71,7 +77,11 @@ const AppContextProvider = ({ children }) => {
     loadUserData,
   };
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={value}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 export default AppContextProvider;
